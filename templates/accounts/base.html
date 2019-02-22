@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+{% load auth_extras %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/master.css' %}">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li> <a class="navbar-brand" href="{% url 'index' %}">Black Forest Decor Portal</a> </li>
+          {% if user.is_authenticated %}
+            {% if user.is_superuser or user.is_staff  %}
+            <li> <a class="navbar-link" href="{% url 'admin:index' %}">Users</a> </li>
+            {% endif %}
+            {% if request.user|has_group:"Repricing" or user.is_superuser %}
+            <li> <a class="navbar-link" href="{% url 'reprice1:findVendorId' %}">Repricing</a> </li>
+            {% endif %}
+            {% if request.user|has_group:"QB Reports" or user.is_superuser %}
+            <li> <a class="navbar-link" href="{% url 'qbreport1:upload_QB_File' %}">QB Report</a> </li>
+            {% endif %}
+
+            {% if request.user|has_group:"amazon" or user.is_superuser %}
+            <li> <a class="navbar-link" href="{% url 'amzbullet:amz_upload_file' %}">Amazon Bullet Points</a> </li>
+            {% endif %}
+            {% if request.user|has_group:"retail_bloom" or user.is_superuser %}
+            <li> <a class="navbar-link" href="{% url 'bloom:upload_file' %}">RetailBloom</a> </li>
+            {% endif %}
+          <li> <a class="navbar-link" href="{% url 'logout' %}">Logout</a> </li>
+          {% else %}
+          <li> <a class="navbar-link" href="{% url 'accounts:user_login' %}">Login</a> </li>
+          {% endif %}
+
+
+
+
+        </ul>
+
+      </div>
+
+    </nav>
+    <div class="container">
+      {% block body_block %}
+
+      {% endblock %}
+    </div>
+
+
+
+  </body>
+</html>

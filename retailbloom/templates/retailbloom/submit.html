@@ -1,0 +1,35 @@
+
+{% extends "accounts/base.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+
+<div class="container retailbloomform">
+  <h3>Upload File:</h3>
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+{% endif %}
+</div>
+<br>
+<div class="container">
+  <h3>Download Sample File:</h3>
+  <a class="btn btn-default" href="{% url 'bloom:download_template'%}" role="button">Download Sample File</a><br><br>
+
+</div>
+<div class="container">
+  <h3>Directions:</h3>
+  <ul>
+    <li>There should only be one column in the upload file. That column must have the heading <strong>"ItemCode"</strong></li>
+    <li>Upload File <strong> MUST</strong> be in a .csv format.</li>
+    <li>List <strong>all</strong> the Item Codes of the items you want Channel Advisor to only update the price and quantities for.</li>
+    <li>If you are not sure if you are using the correct value for the Item Code, go to our website and search for the product. <br>Then go to that product's product page, and you will be able to confirm the value of the item code.<br>
+        <img style="width: 800px; height: 600px;"alt="Image description" src="{% static 'images/productcode.jpg' %}"/>
+
+  </ul>
+</div>
+{% endblock %}

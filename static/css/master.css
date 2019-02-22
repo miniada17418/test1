@@ -1,0 +1,27 @@
+.table-container{
+  margin: 30px 0 0 0;
+  font-size: .7em
+}
+
+input[type=text],input[type=password]{
+  width: 100%
+
+}
+
+.LoginButton{
+    margin: 10px 0 0 0;
+}
+
+#center-block{
+  margin: auto;
+  max-width: 350px;
+}
+
+.login-header{
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.vendorform{
+  max-width: 350px;
+}

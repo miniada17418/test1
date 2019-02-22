@@ -1,0 +1,58 @@
+{% extends "accounts/base.html" %}
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+<div class="container form-container">
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+{% endif %}
+</div>
+
+<div class="container table-container">
+  <h2>File Header Format:</h2>
+  <table class="table table-striped file-format table-bordered">
+  <tr>
+    <td>Vendor Name</td>
+    <td>Invoice &nbsp; Date</td>
+    <td>Invoice Number</td>
+    <td>Invoice Total</td>
+    <td>Drop Ship Fee</td>
+    <td>Shipping Fee</td>
+    <td>OMX PO</td>
+    <td>OMX Total</td>
+    <td>PO Num</td>
+    <td>Total&nbsp; &nbsp; &nbsp; &nbsp;Difference</td>
+    <td>Discrepancy</td>
+    <td>Memo</td>
+  </tr>
+  <tr>
+    <td>Westport Linens, Inc</td>
+    <td>43096</td>
+    <td>104379</td>
+    <td>52</td>
+    <td>0</td>
+    <td>0</td>
+    <td>719838</td>
+    <td>52</td>
+    <td>719838-1</td>
+    <td></td>
+    <td>PREVIOUSLY DELETED</td>
+    <td>WESTPORT LINENS 010918 104379</td>
+  </tr>
+</table>
+
+</div>
+
+<div class="container">
+  <p>Not sure if you have the headers in your file setup correctly?<br>
+    Click the Download button below and use that file's headers. </p>
+  <a class="btn btn-default" href="{% url 'qbreport1:download_template' %}" role="button">Download Template File</a>
+</div>
+
+
+
+{% endblock %}

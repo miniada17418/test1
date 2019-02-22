@@ -1,0 +1,191 @@
+{% extends "accounts/base.html" %}
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+
+<h2>Repricing Report:</h2>
+<h3>Total Items in Database: {{RowCount}}</h3>
+<div class="container vendorform">
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+{% endif %}
+</div>
+
+<div class="container table-container">
+  <h2>File Preview:</h2>{% if VendorID %}
+    <a class="btn btn-default" href="{% url 'reprice:download_vendor_file' supplierID=VendorID %}" role="button">Download</a><br><br>
+
+  {% endif %}
+  <table class="table table-striped file-format table-bordered">
+    <tr>
+      <td>Vendor ID</td>
+      <td>Item Code</td>
+      <td>Vendor Code</td>
+      <td>UPC</td>
+      <td>Vendor Product Name</td>
+      <td>Current Wholesale Price AD</td>
+      <td>New Wholesale Price AD</td>
+      <td>Current Wholesale Price BD</td>
+      <td>New Wholesale Price BD</td>
+      <td>Current DropShip Price AD</td>
+      <td>New DropShip Price AD</td>
+      <td>Current DropShip Price BD</td>
+      <td>New DropShip Price BD</td>
+      <td>DropShip Fee</td>
+      <td>MAP</td>
+      <td>Full Retail Price MSRP</td>
+      <td>Option One Value</td>
+      <td>Option One Surcharge</td>
+      <td>Option Two Value</td>
+      <td>Option Two Surcharge</td>
+      <td>Option Three Value</td>
+      <td>Option Three Surcharge</td>
+    </tr>
+    {% for row in VendorData.all  %}
+    {% if forloop.counter < 11 %}
+      <tr>
+        {% if row.vendorID == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.vendorID }}</td>
+        {% endif %}
+
+        {% if row.bfdItemCode == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.bfdItemCode }}</td>
+        {% endif %}
+
+        {% if row.vendorCode == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.vendorCode }}</td>
+        {% endif %}
+
+        {% if row.vendor_UPC == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.vendor_UPC }}</td>
+        {% endif %}
+
+        {% if row.vendor_ProductName == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.vendor_ProductName }}</td>
+        {% endif %}
+
+        {% if row.currWholesalePrice_AD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.currWholesalePrice_AD }}</td>
+        {% endif %}
+
+        {% if row.newWholesalePrice_AD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.newWholesalePrice_AD }}</td>
+        {% endif %}
+
+        {% if row.currWholesalePrice_BD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.currWholesalePrice_BD }}</td>
+        {% endif %}
+
+        {% if row.newWholesalePrice_BD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.newWholesalePrice_BD }}</td>
+        {% endif %}
+
+        {% if row.currDropShipPrice_AD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.currDropShipPrice_AD }}</td>
+        {% endif %}
+
+        {% if row.newDropShipPrice_AD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.newDropShipPrice_AD }}</td>
+        {% endif %}
+
+        {% if row.currDropShipPrice_BD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.currDropShipPrice_BD }}</td>
+        {% endif %}
+
+        {% if row.newDropShipPrice_BD == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.newDropShipPrice_BD }}</td>
+        {% endif %}
+
+        {% if row.dropShipFee == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.dropShipFee }}</td>
+        {% endif %}
+
+        {% if row.mapPrice == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.mapPrice }}</td>
+        {% endif %}
+
+        {% if row.fullRetailPrice_MSRP == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.fullRetailPrice_MSRP }}</td>
+        {% endif %}
+
+        {% if row.optionOneValue == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.optionOneValue }}</td>
+        {% endif %}
+
+        {% if row.optionOneSurcharge == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.optionOneSurcharge }}</td>
+        {% endif %}
+
+        {% if row.optionTwoValue == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.optionTwoValue }}</td>
+        {% endif %}
+
+        {% if row.optionTwoSurcharge == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.optionTwoSurcharge }}</td>
+        {% endif %}
+
+        {% if row.optionThreeValue == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.optionThreeValue }}</td>
+        {% endif %}
+
+        {% if row.optionThreeSurcharge == None %}
+        <td></td>
+        {% else %}
+        <td>{{ row.optionThreeSurcharge }}</td>
+        {% endif %}
+
+      </tr>
+      {% endif %}
+      {% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

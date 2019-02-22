@@ -1,0 +1,25 @@
+{% extends "accounts/base.html" %}
+{% block body_block %}
+
+<div class="container table-container">
+  <h2>Vendor Not in Database</h2>
+  <p>If a vendor's name is listed below, then they need to be mapped in the database.<br>
+  You will need to know the name of the vendor as Black Forest Decor uses it in OMX. <br>
+  If you don't know the name of the vendor as it is listed in OMX, please contact the <br>
+  warehouse team and request that they send you the name of the vendor in OMX as it is stated <br>
+  under "base item attribute 7."  </p>
+  <table class="table table-striped file-format table-bordered">
+    <tr>
+      <td>Vendor:</td>
+    </tr>
+    {% for vendor in vendors.all  %}
+    <tr>
+      <td>{{ vendor.verndorname }}</td>
+    </tr>
+
+    {% endfor %}
+
+  </table>
+</div>
+
+{% endblock %}

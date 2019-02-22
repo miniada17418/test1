@@ -1,0 +1,31 @@
+{% extends "accounts/base.html" %}
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+
+<h2>Retail Bloom Upload File: {{file_name}}</h2>
+<h3>Total Items in File: {{total_rows}}</h3>
+
+<div class="container">
+  {% if upload_pk %}
+    <a class="btn btn-default" href="{% url 'bloom:success_url' pk=upload_pk %}" role="button">Post File</a><br><br>
+
+  {% endif %}
+
+</div>
+<div class="container table-container">
+  <h2>File Preview:</h2>
+
+  <table class="table table-striped file-format table-bordered">
+    {% for row in sample_file  %}
+      <tr>
+        <td>{{ row }}</td>
+      </tr>
+      {% endfor %}
+
+</table>
+
+</div>
+{% endif %}
+{% endblock %}
