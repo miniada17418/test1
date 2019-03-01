@@ -42,8 +42,8 @@ def send_update_email(email_from, email_to, subject_line, file_attachment, messa
 
     mail.starttls()
 
-    mail.login('cyle@blackforestdecor.com', 'cTaborc84')
+    mail.login(os.environ["email_user"], os.environ["email_pass"])
 
-    mail.sendmail('cyle@blackforestdecor.com', 'cyle@blackforestdecor.com',text,)
+    mail.sendmail(os.environ["email_user"], os.environ["email_user"],text,)
 
     mail.quit()

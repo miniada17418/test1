@@ -17,8 +17,11 @@ from .models import RetailBloom
 from .smtplib_email_notification import *
 from ftplib import FTP
 
-ftp = FTP(host='ftp.dropshipadministrator2717.com')
-ftp.login(user='dropshi8', passwd='E2f$145*')
+
+
+
+ftp = FTP(host=os.environ["dropship_ftp_host"])
+ftp.login(user=os.environ["dropship_ftp_user"], passwd=os.environ["dropship_ftp_pass"])
 ftp.cwd('/dropshipadministrator2717.com/channelsale2')
 
 def placeFile(f):

@@ -1,9 +1,10 @@
-settings.py
 crontab
 crontab -e
 crontab.save
 .crontab.swp
-media/
+media/repricing/*
+media/qbreports/uploads/*
+media/retailbloom/uploads/*
 
 
 # Byte-compiled / optimized / DLL files

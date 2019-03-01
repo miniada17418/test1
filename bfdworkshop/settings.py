@@ -22,12 +22,12 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q$szlyr^g3e4158lc*hb(b1p2%$v3(lh89qa9%0=*z8d6k#@^$'
+SECRET_KEY = os.environ["django_setting_secret_key"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['45.55.218.244','.blackforestdecorworkshop.com']
+ALLOWED_HOSTS = ['45.55.218.244','.blackforestdecorworkshop.com', 'www.blackforestdecorworkshop.com']
 
 
 # Application definition
@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'bfdworkshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bfdworkshop',
-        'USER': 'bfd',
-        'PASSWORD': 'Pharm446s!',
+        'NAME': os.environ["databasename"],
+        'USER': os.environ["databaseuser"],
+        'PASSWORD': os.environ["databasepass"],
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -144,15 +144,15 @@ MAILER_LIST = ['cyle@blackforestdecor.com']
 
 EMAIL_HOST = 'smtp.us.exg7.exghost.com'
 
-EMAIL_HOST_USER = 'cyle@blackforestdecor.com'
+EMAIL_HOST_USER = os.environ["email_user"]
 
-EMAIL_HOST_PASSWORD = 'cTaborc84'
+EMAIL_HOST_PASSWORD = os.environ["email_pass"]
 
 EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = 'cyle@blackforestdecor.com'
+DEFAULT_FROM_EMAIL = os.environ["email_user"]
 
-ADMINS = (('Cyle','cyle@blackforestdecor.com'),)
+ADMINS = (('Cyle',os.environ["email_user"]),)
 
